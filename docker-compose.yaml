@@ -1,0 +1,20 @@
+networks:
+  default:
+    external:
+      name: roboshop
+
+services: 
+  mongodb:
+    image: mongodb:1
+
+  catalogue:
+    image: catalogue:1
+    depends_on:
+      - mongodb
+
+  web:
+    image: web:1
+    ports:
+      -"80:80"
+    depends_on:
+      - catalogue
